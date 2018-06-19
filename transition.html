@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EPG模板</title>
+    <meta name="page-view-size" content="1280*720" />
+</head>
+
+<body>
+</body>
+<script>
+    var platform,
+        itvAccount, //itv账号
+        play_flag = false; // 视频播放flag 用于调试
+        
+    if (play_flag) {
+        if (tyepof(Authentication) != "undefined") {
+            if (Authentication.CTCGetConfig("STBType").substr(0, 1) == "E") {
+                itvAccount = Authentication.CTCGetConfig("username");
+            } else {
+                itvAccount = Authentication.CTCGetConfig("UserID");
+            }
+        }
+        var domain = Authentication.CTCGetConfig("EPGDomain");
+
+        if (domain.indexOf("EPG") != -1) { //华为
+            platform = "HW";
+        } else { //中兴
+            platform = "ZTE";
+        }
+    }
+    window.location.href = "./pages/root.html?itvAccount=" + itvAccount + "&platform=" + platform + "&play_flag=" +
+        play_flag;
+</script>
+
+</html>

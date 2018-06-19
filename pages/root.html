@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EPG入口</title>
+    <meta name="page-view-size" content="1280*720" />
+    <link rel="stylesheet" href="../sass/common.min.css">
+</head>
+
+<body>
+    <iframe id="iframe" src="./index.html" frameborder="0"></iframe>
+
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+
+    <script>
+        var itvAccount = getUrlParameter("itvAccount"),
+            platform = getUrlParameter("platform"),
+            play_flag = getUrlParameter("play_flag"),//string
+            cookie_obj = {
+                areaid_arr: [],
+                indexid_arr: [],
+                back_url_arr: []
+            },
+            areaid,
+            indexid,
+            back_url,
+
+            end = 0;
+            
+        var goUrl = function (_areaid, _indexid, _url, _back_url) {
+            // console.log(cookie_obj);
+            cookie_obj.areaid_arr.push(_areaid);
+            cookie_obj.indexid_arr.push(_indexid);
+            cookie_obj.back_url_arr.push(_back_url);
+            $("#iframe").prop("src", _url + "?itvAccount=" + itvAccount + "&platform=" + platform);
+            // $.cookie('cookie_obj', JSON.stringify(cookie_obj), {expires: 7});
+        };
+
+        var goBack = function () {
+            // console.log(cookie_obj);
+            areaid = cookie_obj.areaid_arr.pop();
+            indexid = cookie_obj.indexid_arr.pop();
+            back_url = cookie_obj.back_url_arr.pop();
+            $("#iframe").prop("src", back_url + "?itvAccount=" + itvAccount + "&platform=" + platform);
+        }
+
+        //获取地址栏参数
+        function getUrlParameter(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+    </script>
+</body>
+
+</html>

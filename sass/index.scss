@@ -1,0 +1,42 @@
+.nav{
+    top: 50px;
+    .item{
+        width: 202px;
+        height: 82px;
+        top: 20px;
+        left: 30px;
+        background: lightgray;
+        .txt{
+            width: 100%;
+            height: 82px;
+            line-height: 82px;
+            text-align: center;
+        }
+    }
+    #area0_list_0 {
+        left: 100px;
+    }
+    #area0_list_1 {
+        left: 400px;
+    }
+}
+
+
+//图片水平垂直居中
+// .image_show{
+//     position: absolute;
+//     left: 100px;
+//     top: 150px;
+//     width: 800px;
+//     height: 300px;
+//     border: solid 1px red;
+//     img{
+//         max-height: 100%;
+//         max-width: 100%;
+//         position:absolute;
+//         top:50%;
+//         left:50%;
+//         -webkit-transform:translate(-50%,-50%);
+//     }
+// }
+
