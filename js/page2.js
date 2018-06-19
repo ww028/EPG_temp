@@ -1,10 +1,13 @@
 var area0, area1;
 var templist0, templist1;
 
-console.log(parent.cookie_obj)
-console.log(parent.indexid)
+// console.log(parent.cookie_obj)
+console.log(parent.areaid,parent.indexid)
 var areaid = parent.areaid || 0,
     indexid = parent.indexid || 0;
+
+// var areaid = 0,
+//     indexid = 0;
 
 window.onload = function () {
     window.focus();

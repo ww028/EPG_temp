@@ -18,31 +18,34 @@
         var itvAccount = getUrlParameter("itvAccount"),
             platform = getUrlParameter("platform"),
             play_flag = getUrlParameter("play_flag"),//string
-            cookie_obj = {
+            foc_obj = {
                 areaid_arr: [],
                 indexid_arr: [],
                 back_url_arr: []
             },
             areaid,
             indexid,
+
             back_url,
 
             end = 0;
             
         var goUrl = function (_areaid, _indexid, _url, _back_url) {
-            // console.log(cookie_obj);
-            cookie_obj.areaid_arr.push(_areaid);
-            cookie_obj.indexid_arr.push(_indexid);
-            cookie_obj.back_url_arr.push(_back_url);
+            console.log(foc_obj);
+            foc_obj.areaid_arr.push(_areaid);
+            foc_obj.indexid_arr.push(_indexid);
+            foc_obj.back_url_arr.push(_back_url);
+            areaid = foc_obj.areaid_arr.pop();
+            indexid = foc_obj.indexid_arr.pop();
             $("#iframe").prop("src", _url + "?itvAccount=" + itvAccount + "&platform=" + platform);
             // $.cookie('cookie_obj', JSON.stringify(cookie_obj), {expires: 7});
         };
 
         var goBack = function () {
-            // console.log(cookie_obj);
-            areaid = cookie_obj.areaid_arr.pop();
-            indexid = cookie_obj.indexid_arr.pop();
-            back_url = cookie_obj.back_url_arr.pop();
+            areaid = foc_obj.areaid_arr.pop();
+            indexid = foc_obj.indexid_arr.pop();
+            back_url = foc_obj.back_url_arr.pop();
+            console.log(foc_obj);
             $("#iframe").prop("src", back_url + "?itvAccount=" + itvAccount + "&platform=" + platform);
         }
 
