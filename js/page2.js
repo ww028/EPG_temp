@@ -1,13 +1,8 @@
 var area0, area1;
 var templist0, templist1;
 
-// console.log(parent.cookie_obj)
-console.log(parent.areaid,parent.indexid)
 var areaid = parent.areaid || 0,
     indexid = parent.indexid || 0;
-
-// var areaid = 0,
-//     indexid = 0;
 
 window.onload = function () {
     window.focus();
@@ -22,11 +17,12 @@ function pageInit() {
 
     //页面点击事件
     pageobj.pageOkEvent = function () {
-        var areaId = pageobj.curareaid; //当前区域
-        var indexId = pageobj.areas[pageobj.curareaid].curindex; //当前位置
-        switch(areaId){
+        var areaid = pageobj.curareaid,
+            indexid = pageobj.areas[pageobj.curareaid].curindex,
+            back_url = parent.$("#iframe").prop("src");
+        switch(areaid){
             case 0:
-                parent.goUrl(areaId,indexId,"../pages/page3.html","../pages/page2.html")
+                parent.goUrl(areaid,indexid,"../pages/page3.html", back_url)
                 break;
         }
     };

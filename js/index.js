@@ -1,6 +1,7 @@
 var area0, area1;
 var templist0, templist1;
 
+// console.log(parent.foc_obj);
 var areaid = parent.areaid || 0,
     indexid = parent.indexid || 0;
 
@@ -18,9 +19,9 @@ function pageInit() {
 
     //页面点击事件
     pageobj.pageOkEvent = function () {
-        var areaid = pageobj.curareaid; //当前区域
-        var indexid = pageobj.areas[pageobj.curareaid].curindex; //当前位置
-        var back_url = "../pages/index.html"
+        var areaid = pageobj.curareaid,
+            indexid = pageobj.areas[pageobj.curareaid].curindex,
+            back_url = "../pages/index.html"
         switch (areaid) {
             case 0:
                 parent.goUrl(areaid, indexid, "../pages/page2.html", back_url)
@@ -33,7 +34,7 @@ function pageInit() {
     };
 
     // 返回
-    pageobj.goBackEvent = function () {
-        parent.goBack();
-    };
+    // pageobj.goBackEvent = function () {
+    //     parent.goBack();
+    // };
 }
