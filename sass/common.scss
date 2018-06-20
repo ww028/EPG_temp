@@ -6,7 +6,7 @@
 #iframe {
     width: 1280px;
     height: 720px;
-    background: lightblue;
+    background: url("../images/Beach.jpg") no-repeat;
 }
 
 // 焦点
@@ -26,4 +26,17 @@
 
 .focus_img,.item, .pic,.txt{
     position: absolute;
+}
+
+h3{
+    position: absolute;
+}
+// logo
+.logo{
+    width: 200px;
+    position: absolute;
+    left: 1000px;
+    img{
+        width: 100%;
+    }
 }

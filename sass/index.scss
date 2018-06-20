@@ -45,6 +45,27 @@
     }
 }
 
+// 底部
+.footer{
+    position: absolute;
+    top: 600px;
+    width: 100%;
+    font-size: 28px;
+    letter-spacing: 50px;
+    
+    .item{
+        width: 100%;
+        height: 82px;
+        background: lightgray;  
+    }
+   
+    .txt{
+        width: 100%;
+        height: 82px;
+        line-height: 82px;
+        text-align: center;
+    }
+}
 
 //图片水平垂直居中
 // .image_show{
