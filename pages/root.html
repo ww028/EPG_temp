@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <iframe id="iframe" src="./index.html" frameborder="0"></iframe>
+    <iframe id="iframe" src="" frameborder="0"></iframe>
 
     <script src="../js/jquery-1.8.3.min.js"></script>
     <script src="../js/jquery.cookie.js"></script>
@@ -23,25 +23,31 @@
                 indexid_arr: [],
                 back_url_arr: []
             },
+            page = {
+                index_page:0
+            },
             areaid,
             indexid,
             back_url,
 
             end = 0;
+
+        // 设置页面地址
+        $("#iframe").prop("src","index.html?itvAccount=" + itvAccount + "&platform=" + platform);
             
-        var goUrl = function (_areaid, _indexid, _url, _back_url) {
-            areaid = '',
-            indexid = '',
+        var goUrl = function (_areaid, _indexid, _url, _back_url, _curpage) {
+            if(RegExp("index").test(_back_url) && _areaid == 1){
+                page.index_page = _curpage
+            }
+            areaid = '';
+            indexid = '';
             foc_obj.areaid_arr.push(_areaid);
             foc_obj.indexid_arr.push(_indexid);
             foc_obj.back_url_arr.push(_back_url);
             $("#iframe").prop("src", _url + "?itvAccount=" + itvAccount + "&platform=" + platform);
-            // $.cookie('foc_obj', JSON.stringify(foc_obj), {expires: 7});
         };
 
         var goBack = function () {
-            // var get_obj = JSON.parse($.cookie("foc_obj"))
-            // console.log(get_obj);
             areaid = foc_obj.areaid_arr.pop();
             indexid = foc_obj.indexid_arr.pop();
             back_url = foc_obj.back_url_arr.pop();

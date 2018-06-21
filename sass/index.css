@@ -36,6 +36,20 @@
   text-align: center;
 }
 
+.content .go_left,
+.content .go_right {
+  position: absolute;
+  top: 210px;
+}
+
+.content .go_left {
+  left: 30px;
+}
+
+.content .go_right {
+  left: 1220px;
+}
+
 .content #area1_list_0 {
   left: 100px;
 }
@@ -46,6 +60,10 @@
 
 .content #area1_list_2 {
   left: 700px;
+}
+
+.content #area1_list_3 {
+  left: 1000px;
 }
 
 .footer {

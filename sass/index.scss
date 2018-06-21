@@ -34,6 +34,17 @@
             text-align: center;
         }
     }
+    .go_left,
+    .go_right{
+        position: absolute;
+        top: 210px;
+    }
+    .go_left{
+        left: 30px;
+    }
+    .go_right{
+        left: 1220px;
+    }
     #area1_list_0 {
         left: 100px;
     }
@@ -42,6 +53,9 @@
     }
     #area1_list_2 {
         left: 700px;
+    }
+    #area1_list_3 {
+        left: 1000px;
     }
 }
 
