@@ -76,18 +76,6 @@
   left: 1000px;
 }
 
-.content #area2_list_0 {
-  width: 56px;
-  top: 365px;
-  left: 30px;
-}
-
-.content #area2_list_1 {
-  width: 56px;
-  top: 365px;
-  left: 920px;
-}
-
 .content .content2 #area3_list_0 {
   top: 350px;
   left: 100px;
@@ -106,6 +94,23 @@
 .content .content2 #area3_list_3 {
   top: 350px;
   left: 1000px;
+}
+
+.content .content2 #area4_list_0 {
+  top: 500px;
+  left: 400px;
+}
+
+.content .content2 #area4_list_1 {
+  top: 500px;
+  left: 700px;
+}
+
+.content .content2 #page {
+  position: absolute;
+  font-size: 40px;
+  top: 510px;
+  left: 620px;
 }
 
 .footer {

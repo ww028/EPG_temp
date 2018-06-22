@@ -60,18 +60,6 @@
             left: 1000px;
         }
     } //content1
-
-    #area2_list_0 {
-        width: 56px;
-        top: 365px;
-        left: 30px;
-    }
-
-    #area2_list_1{
-        width: 56px;
-        top: 365px;
-        left: 920px;
-    }
     .content2 {
         #area3_list_0 {
             top: 350px;
@@ -89,7 +77,21 @@
             top: 350px;
             left: 1000px;
         }
-    }//content2
+        #area4_list_0 {
+            top: 500px;
+            left: 400px;
+        }
+        #area4_list_1 {
+            top: 500px;
+            left: 700px;
+        }
+        #page{
+            position: absolute;
+            font-size: 40px;
+            top: 510px;
+            left: 620px;
+        }
+    } //content2
 }
 
 // 底部

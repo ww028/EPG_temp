@@ -1,5 +1,5 @@
-var area0, area1, area2, area3;
-var templist0, templist1, templist2, templist3;
+var area0, area1, area2, area3, area4;
+var templist0, templist1, templist2,templist3;
 
 var list1 = [{
     text: "区域一 栏目一"
@@ -19,11 +19,27 @@ var list1 = [{
     text: "区域一 栏目8"
 }, {
     text: "区域一 栏目9"
-}]
+}];
 
 var list2 = [{
     text: "欢迎欢迎，热烈欢迎"
-}]
+}];
+
+var list3 = [{
+    text:"区域三 栏目1"
+},{
+    text:"区域三 栏目2"
+},{
+    text:"区域三 栏目3"
+},{
+    text:"区域三 栏目4"
+},{
+    text:"区域三 栏目5"
+},{
+    text:"区域三 栏目6"
+},{
+    text:"区域三 栏目7"
+}];
 
 // console.log(parent.foc_obj);
 var areaid = parent.areaid || 0,
@@ -34,6 +50,7 @@ window.onload = function () {
     pageInit();
     bindList1(getDataValue(area1.curpage, list1, 4));
     bindList2(getDataValue(area2.curpage, list2, 1));
+    bindList3(getDataValue(area3.curpage, list3, 4));
     // marqueearea1dom();
     marqueearea2dom();
 };
@@ -41,11 +58,12 @@ window.onload = function () {
 function pageInit() {
     //创建焦点
     area0 = WkEpg.AreaCreator(1, 2, new Array(-1, -1, 1, -1), "area0_list_", "className:item item_focus", "className:item");
-    area1 = WkEpg.AreaCreator(1, 4, new Array(0, -1, -1, -1), "area1_list_", "className:item item_focus", "className:item");
-    area2 = WkEpg.AreaCreator(1, 2, new Array(-1, -1, -1, -1), "area2_list_", "className:item item_focus", "className:item");
-    area3 = WkEpg.AreaCreator(1, 3, new Array(-1, -1, -1, -1), "area3_list_", "className:item item_focus", "className:item");
+    area1 = WkEpg.AreaCreator(1, 4, new Array(0, -1, 3, -1), "area1_list_", "className:item item_focus", "className:item");
+    area2 = WkEpg.AreaCreator(1, 1, new Array(-1, -1, -1, -1), "area2_list_", "className:item item_focus", "className:item");
+    area3 = WkEpg.AreaCreator(1, 4, new Array(1, -1, 4, -1), "area3_list_", "className:item item_focus", "className:item");
+    area4 = WkEpg.AreaCreator(1, 2, new Array(3, -1, -1, -1), "area4_list_", "className:item item_focus", "className:item");
 
-    pageobj = WkEpg.PageCreator(areaid, indexid, new Array(area0, area1, area2, area3));
+    pageobj = WkEpg.PageCreator(areaid, indexid, new Array(area0, area1, area2, area3, area4));
 
     //判断页面的页码
     if (parent.page.index_page) {
@@ -57,7 +75,20 @@ function pageInit() {
     area1.pagecount = Math.ceil(list1.length/4);
     area1.areaPageTurnEvent = function(num){
         bindList1(getDataValue(area1.curpage, list1, 4));
-    };//设置本区域的翻页事件 通常是绑定数据
+    };
+
+    //设置本区域的翻页事件
+    area3.areaPageTurnEvent = function(num){
+        bindList3(getDataValue(area3.curpage,list3,4));
+    }
+    area3.pagecount = Math.ceil(list3.length/4);
+
+    area4.doms[0].domOkEvent = function(){
+        WkEpg.pageobj.pageTurn(-1,3);//pageTurn(num,areaid) num 1 下一页 num -1 上一页
+    }
+    area4.doms[1].domOkEvent = function(){
+        WkEpg.pageobj.pageTurn(1,3); //num 1 下一页 num -1 上一页
+    }
 
     //页面点击事件
     pageobj.pageOkEvent = function () {
@@ -122,6 +153,25 @@ function bindList2(datavalue) {
             WkEpg.$("area2_list_" + i).style.visibility = "hidden";
         }
     }
+}
+
+function bindList3(datavalue){
+    templist3=datavalue;
+    area3.datanum=datavalue.length;
+    for (var i = 0; i< 4; i++) {
+         if(i<datavalue.length){
+            WkEpg.$("area3_list_"+i).style.visibility ="visible";
+            WkEpg.$("area3_txt_"+i).innerHTML=datavalue[i].text;
+            area3.doms[i].contentdom = datavalue[i].text;
+            if(WkEpg.getByteLength(area3.doms[i].contentdom)>14){
+              document.getElementById("area3_txt_"+i).innerHTML=WkEpg.getCutedString(area3.doms[i].contentdom, 14,true);
+            }
+         }else{
+             WkEpg.$("area3_list_"+i).style.visibility ="hidden";
+         }
+    }
+    console.log(area3.pagecount)
+    WkEpg.$("page").innerHTML = area3.curpage+"/"+area3.pagecount;
 }
 
 
