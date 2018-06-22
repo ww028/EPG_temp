@@ -1,5 +1,5 @@
-var area0, area1, area2;
-var templist0, templist1;
+var area0, area1, area2, area3;
+var templist0, templist1, templist2, templist3;
 
 var list1 = [{
     text: "区域一 栏目一"
@@ -34,6 +34,7 @@ window.onload = function () {
     pageInit();
     bindList1(getDataValue(area1.curpage, list1, 4));
     bindList2(getDataValue(area2.curpage, list2, 1));
+    // marqueearea1dom();
     marqueearea2dom();
 };
 
@@ -41,19 +42,20 @@ function pageInit() {
     //创建焦点
     area0 = WkEpg.AreaCreator(1, 2, new Array(-1, -1, 1, -1), "area0_list_", "className:item item_focus", "className:item");
     area1 = WkEpg.AreaCreator(1, 4, new Array(0, -1, -1, -1), "area1_list_", "className:item item_focus", "className:item");
-    area2 = WkEpg.AreaCreator(1, 1, new Array(-1, -1, -1, -1), "area2_list_", "className:item item_focus", "className:item");
+    area2 = WkEpg.AreaCreator(1, 2, new Array(-1, -1, -1, -1), "area2_list_", "className:item item_focus", "className:item");
+    area3 = WkEpg.AreaCreator(1, 3, new Array(-1, -1, -1, -1), "area3_list_", "className:item item_focus", "className:item");
 
-    pageobj = WkEpg.PageCreator(areaid, indexid, new Array(area0, area1, area2));
+    pageobj = WkEpg.PageCreator(areaid, indexid, new Array(area0, area1, area2, area3));
 
     //判断页面的页码
     if (parent.page.index_page) {
-        area1.curpage =parent.page.index_page;
+        area1.curpage = parent.page.index_page;
     } else {
         area1.curpage = 1;
     }
     area1.setbroadwiseCrossturnpage(true);//设置横向自动翻页
     area1.pagecount = Math.ceil(list1.length/4);
-    area1.areaPageTurnEvent=function(num){
+    area1.areaPageTurnEvent = function(num){
         bindList1(getDataValue(area1.curpage, list1, 4));
     };//设置本区域的翻页事件 通常是绑定数据
 
@@ -72,7 +74,7 @@ function pageInit() {
                 break;
         }
     };
-}
+}//pageInit
 
 function getDataValue(currentPage, curList, pageSize) {
     var testList = curList;
@@ -95,9 +97,9 @@ function bindList1(datavalue){
          if(i<datavalue.length){
             WkEpg.$("area1_list_"+i).style.visibility ="visible";
             WkEpg.$("area1_txt_"+i).innerHTML=datavalue[i].text;
-            area1.doms[i].contentdom=datavalue[i].contName;
-            if(WkEpg.getByteLength(area1.doms[i].contentdom)>10){
-              document.getElementById("area1_txt_"+i).innerHTML=WkEpg.getCutedString(area1.doms[i].contentdom,4,true);
+            area1.doms[i].contentdom = datavalue[i].text;
+            if(WkEpg.getByteLength(area1.doms[i].contentdom)>14){
+              document.getElementById("area1_txt_"+i).innerHTML=WkEpg.getCutedString(area1.doms[i].contentdom, 14,true);
             }
          }else{
              WkEpg.$("area1_list_"+i).style.visibility ="hidden";
@@ -113,8 +115,8 @@ function bindList2(datavalue) {
             WkEpg.$("area2_list_" + i).style.visibility = "visible";
             WkEpg.$("area2_txt_" + i).innerHTML = datavalue[i].text;
             area2.doms[i].contentdom = datavalue[i].text;
-            if (WkEpg.getByteLength(area2.doms[i].contentdom) > 12) {
-                document.getElementById("area2_txt_" + i).innerHTML = WkEpg.getCutedString(area2.doms[i].contentdom, 12, true);
+            if (WkEpg.getByteLength(area2.doms[i].contentdom) > 10) {
+                document.getElementById("area2_txt_" + i).innerHTML = WkEpg.getCutedString(area2.doms[i].contentdom, 10, true);
             }
         } else {
             WkEpg.$("area2_list_" + i).style.visibility = "hidden";
@@ -122,7 +124,19 @@ function bindList2(datavalue) {
     }
 }
 
+
 // 文本滚动动画
+function marqueearea1dom() {
+    area1.changefocusAfterEvent = function () {
+        if (WkEpg.getByteLength(area1.doms[area1.curindex].contentdom) > 10)
+            document.getElementById("area1_txt_" + area1.curindex).innerHTML = "<marquee direction='left' scrolldelay='0'>" + area1.doms[area1.curindex].contentdom + "</marquee>";
+    };
+    area1.changeunfocusBeforeEvent = function () {
+        if (WkEpg.getByteLength(area1.doms[area1.curindex].contentdom) > 10)
+            document.getElementById("area1_txt_" + area1.curindex).innerHTML = WkEpg.getCutedString(area1.doms[area1.curindex].contentdom, 10, true);
+    };
+}
+
 function marqueearea2dom() {
     // area2.changefocusAfterEvent = function () {
     // if (WkEpg.getByteLength(area2.doms[area2.curindex].contentdom) > 6)

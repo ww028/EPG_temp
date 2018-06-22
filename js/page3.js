@@ -1,7 +1,6 @@
 var area0, area1;
 var templist0, templist1;
 
-console.log(parent.cookie_obj)
 var areaid = 0,
     indexid = 0;
 
@@ -20,7 +19,7 @@ function pageInit() {
     pageobj.pageOkEvent = function () {
         var areaid = pageobj.curareaid,
             indexid = pageobj.areas[pageobj.curareaid].curindex,
-            back_url = parent.$("#iframe").prop("src");
+            back_url = "../pages/page3.html";
         switch (areaid) {
             case 0:
                 parent.goUrl(areaid, indexid, "../pages/page3.html", back_url)

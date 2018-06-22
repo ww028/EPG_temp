@@ -19,7 +19,7 @@ function pageInit() {
     pageobj.pageOkEvent = function () {
         var areaid = pageobj.curareaid,
             indexid = pageobj.areas[pageobj.curareaid].curindex,
-            back_url = parent.$("#iframe").prop("src");
+            back_url = "../pages/page2.html";
         switch(areaid){
             case 0:
                 parent.goUrl(areaid,indexid,"../pages/page3.html", back_url)

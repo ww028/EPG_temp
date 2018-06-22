@@ -10,10 +10,7 @@
 
 <body>
     <iframe id="iframe" src="" frameborder="0"></iframe>
-
     <script src="../js/jquery-1.8.3.min.js"></script>
-    <script src="../js/jquery.cookie.js"></script>
-
     <script>
         var itvAccount = getUrlParameter("itvAccount"),
             platform = getUrlParameter("platform"),
@@ -43,7 +40,9 @@
             indexid = '';
             foc_obj.areaid_arr.push(_areaid);
             foc_obj.indexid_arr.push(_indexid);
-            foc_obj.back_url_arr.push(_back_url);
+            if(_back_url != foc_obj.back_url_arr[foc_obj.back_url_arr.length-1]){
+                foc_obj.back_url_arr.push(_back_url);
+            }
             $("#iframe").prop("src", _url + "?itvAccount=" + itvAccount + "&platform=" + platform);
         };
 

@@ -1,11 +1,11 @@
-.nav{
-    .item{
+.nav {
+    .item {
         width: 202px;
         height: 82px;
         top: 50px;
         left: 30px;
         background: lightgray;
-        .txt{
+        .txt {
             width: 100%;
             height: 82px;
             line-height: 82px;
@@ -20,60 +20,91 @@
     }
 }
 
-.content{
-    .item{
-        width: 202px;
-        height: 82px;
-        top: 200px;
-        left: 30px;
-        background: lightgray;
-        .txt{
-            width: 100%;
+.content {
+    .content1,
+    .content2 {
+        .item {
+            width: 202px;
             height: 82px;
-            line-height: 82px;
-            text-align: center;
+            top: 200px;
+            left: 30px;
+            background: lightgray;
+            .txt {
+                width: 100%;
+                height: 82px;
+                line-height: 82px;
+                text-align: center;
+            }
         }
-    }
-    .go_left,
-    .go_right{
-        position: absolute;
-        top: 210px;
-    }
-    .go_left{
+        .go_left,
+        .go_right {
+            position: absolute;
+            top: 210px;
+        }
+        .go_left {
+            left: 30px;
+        }
+        .go_right {
+            left: 1220px;
+        }
+        #area1_list_0 {
+            left: 100px;
+        }
+        #area1_list_1 {
+            left: 400px;
+        }
+        #area1_list_2 {
+            left: 700px;
+        }
+        #area1_list_3 {
+            left: 1000px;
+        }
+    } //content1
+
+    #area2_list_0 {
+        width: 56px;
+        top: 365px;
         left: 30px;
     }
-    .go_right{
-        left: 1220px;
+
+    #area2_list_1{
+        width: 56px;
+        top: 365px;
+        left: 920px;
     }
-    #area1_list_0 {
-        left: 100px;
-    }
-    #area1_list_1 {
-        left: 400px;
-    }
-    #area1_list_2 {
-        left: 700px;
-    }
-    #area1_list_3 {
-        left: 1000px;
-    }
+    .content2 {
+        #area3_list_0 {
+            top: 350px;
+            left: 100px;
+        }
+        #area3_list_1 {
+            top: 350px;
+            left: 400px;
+        }
+        #area3_list_2 {
+            top: 350px;
+            left: 700px;
+        }
+        #area3_list_3 {
+            top: 350px;
+            left: 1000px;
+        }
+    }//content2
 }
 
 // 底部
-.footer{
+.footer {
     position: absolute;
     top: 600px;
     width: 100%;
     font-size: 28px;
     letter-spacing: 50px;
-    
-    .item{
+    .item {
         width: 100%;
         height: 82px;
-        background: lightgray;  
+        background: lightgray;
     }
-   
-    .txt{
+    .txt {
         width: 100%;
         height: 82px;
         line-height: 82px;
@@ -98,4 +129,3 @@
 //         -webkit-transform:translate(-50%,-50%);
 //     }
 // }
-
