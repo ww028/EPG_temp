@@ -1,5 +1,5 @@
 var area0, area1, area2, area3, area4;
-var templist0, templist1, templist2,templist3;
+var templist0, templist1, templist2, templist3;
 
 var list1 = [{
     text: "区域一 栏目一"
@@ -26,22 +26,27 @@ var list2 = [{
 }];
 
 var list3 = [{
-    text:"区域三 栏目1"
-},{
-    text:"区域三 栏目2"
-},{
-    text:"区域三 栏目3"
-},{
-    text:"区域三 栏目4"
-},{
-    text:"区域三 栏目5"
-},{
-    text:"区域三 栏目6"
-},{
-    text:"区域三 栏目7"
+    text: "区域三 栏目1"
+}, {
+    text: "区域三 栏目2"
+}, {
+    text: "区域三 栏目3"
+}, {
+    text: "区域三 栏目4"
+}, {
+    text: "区域三 栏目5"
+}, {
+    text: "区域三 栏目6"
+}, {
+    text: "区域三 栏目7"
+}, {
+    text: "区域三 栏目8"
+}, {
+    text: "区域三 栏目9"
+}, {
+    text: "区域三 栏目10"
 }];
 
-// console.log(parent.foc_obj);
 var areaid = parent.areaid || 0,
     indexid = parent.indexid || 0;
 
@@ -66,29 +71,29 @@ function pageInit() {
     pageobj = WkEpg.PageCreator(areaid, indexid, new Array(area0, area1, area2, area3, area4));
 
     //判断页面的页码
-    if (parent.page.index_page) {
-        area1.curpage = parent.page.index_page;
+    if (parent.page.index_area1_page) {
+        area1.curpage = parent.page.index_area1_page;
     } else {
         area1.curpage = 1;
     }
-    area1.setbroadwiseCrossturnpage(true);//设置横向自动翻页
-    area1.pagecount = Math.ceil(list1.length/4);
-    area1.areaPageTurnEvent = function(num){
+    area1.setbroadwiseCrossturnpage(true); //设置横向自动翻页
+    area1.pagecount = Math.ceil(list1.length / 4);
+    area1.areaPageTurnEvent = function (num) {
         bindList1(getDataValue(area1.curpage, list1, 4));
     };
 
+    //判断该区域页码
+    if (parent.page.index_area3_page) {
+        area3.curpage = parent.page.index_area3_page;
+    } else {
+        area3.curpage = 1;
+    }
     //设置本区域的翻页事件
-    area3.areaPageTurnEvent = function(num){
-        bindList3(getDataValue(area3.curpage,list3,4));
+    area3.areaPageTurnEvent = function (num) {
+        bindList3(getDataValue(area3.curpage, list3, 4));
     }
-    area3.pagecount = Math.ceil(list3.length/4);
 
-    area4.doms[0].domOkEvent = function(){
-        WkEpg.pageobj.pageTurn(-1,3);//pageTurn(num,areaid) num 1 下一页 num -1 上一页
-    }
-    area4.doms[1].domOkEvent = function(){
-        WkEpg.pageobj.pageTurn(1,3); //num 1 下一页 num -1 上一页
-    }
+    area3.pagecount = Math.ceil(list3.length / 4);
 
     //页面点击事件
     pageobj.pageOkEvent = function () {
@@ -101,11 +106,29 @@ function pageInit() {
                 break;
 
             case 1:
-                parent.goUrl(areaid, indexid, "../pages/page2.html", back_url, area1.curpage)
+                parent.page.index_area1_page = area1.curpage
+                parent.goUrl(areaid, indexid, "../pages/page2.html", back_url)
                 break;
+
+            case 3:
+                parent.goUrl(areaid, indexid, "../pages/page2.html", back_url)
+                break;
+
+            case 4:
+                switch (indexid) {
+                    case 0: //上一页
+                        WkEpg.pageobj.pageTurn(-1, 3); //pageTurn(num,areaid) num 1 下一页 num -1 上一页
+                        parent.page.index_area3_page = area3.curpage;
+                        break;
+
+                    case 1: //下一页
+                        WkEpg.pageobj.pageTurn(1, 3); //num 1 下一页 num -1 上一页
+                        parent.page.index_area3_page = area3.curpage;
+                        break;
+                }
         }
     };
-}//pageInit
+} //pageInit
 
 function getDataValue(currentPage, curList, pageSize) {
     var testList = curList;
@@ -121,20 +144,20 @@ function getDataValue(currentPage, curList, pageSize) {
     return temptestList;
 }
 
-function bindList1(datavalue){
-    templist1=datavalue;
-    area1.datanum=datavalue.length;
-    for (var i = 0; i< 4; i++) {
-         if(i<datavalue.length){
-            WkEpg.$("area1_list_"+i).style.visibility ="visible";
-            WkEpg.$("area1_txt_"+i).innerHTML=datavalue[i].text;
+function bindList1(datavalue) {
+    templist1 = datavalue;
+    area1.datanum = datavalue.length;
+    for (var i = 0; i < 4; i++) {
+        if (i < datavalue.length) {
+            WkEpg.$("area1_list_" + i).style.visibility = "visible";
+            WkEpg.$("area1_txt_" + i).innerHTML = datavalue[i].text;
             area1.doms[i].contentdom = datavalue[i].text;
-            if(WkEpg.getByteLength(area1.doms[i].contentdom)>14){
-              document.getElementById("area1_txt_"+i).innerHTML=WkEpg.getCutedString(area1.doms[i].contentdom, 14,true);
+            if (WkEpg.getByteLength(area1.doms[i].contentdom) > 14) {
+                document.getElementById("area1_txt_" + i).innerHTML = WkEpg.getCutedString(area1.doms[i].contentdom, 14, true);
             }
-         }else{
-             WkEpg.$("area1_list_"+i).style.visibility ="hidden";
-         }
+        } else {
+            WkEpg.$("area1_list_" + i).style.visibility = "hidden";
+        }
     }
 }
 
@@ -155,23 +178,22 @@ function bindList2(datavalue) {
     }
 }
 
-function bindList3(datavalue){
-    templist3=datavalue;
-    area3.datanum=datavalue.length;
-    for (var i = 0; i< 4; i++) {
-         if(i<datavalue.length){
-            WkEpg.$("area3_list_"+i).style.visibility ="visible";
-            WkEpg.$("area3_txt_"+i).innerHTML=datavalue[i].text;
+function bindList3(datavalue) {
+    templist3 = datavalue;
+    area3.datanum = datavalue.length;
+    for (var i = 0; i < 4; i++) {
+        if (i < datavalue.length) {
+            WkEpg.$("area3_list_" + i).style.visibility = "visible";
+            WkEpg.$("area3_txt_" + i).innerHTML = datavalue[i].text;
             area3.doms[i].contentdom = datavalue[i].text;
-            if(WkEpg.getByteLength(area3.doms[i].contentdom)>14){
-              document.getElementById("area3_txt_"+i).innerHTML=WkEpg.getCutedString(area3.doms[i].contentdom, 14,true);
+            if (WkEpg.getByteLength(area3.doms[i].contentdom) > 14) {
+                document.getElementById("area3_txt_" + i).innerHTML = WkEpg.getCutedString(area3.doms[i].contentdom, 14, true);
             }
-         }else{
-             WkEpg.$("area3_list_"+i).style.visibility ="hidden";
-         }
+        } else {
+            WkEpg.$("area3_list_" + i).style.visibility = "hidden";
+        }
     }
-    console.log(area3.pagecount)
-    WkEpg.$("page").innerHTML = area3.curpage+"/"+area3.pagecount;
+    WkEpg.$("page").innerHTML = area3.curpage + "/" + area3.pagecount;
 }
 
 

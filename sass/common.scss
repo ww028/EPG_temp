@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -24,19 +24,23 @@
     position: absolute;
 }
 
-.focus_img,.item, .pic,.txt{
+.focus_img,
+.item,
+.pic,
+.txt {
     position: absolute;
 }
 
-h3{
+h1 {
     position: absolute;
+    color: red;
 }
-// logo
-.logo{
+
+.logo {
     width: 200px;
     position: absolute;
     left: 1000px;
-    img{
+    img {
         width: 100%;
     }
 }

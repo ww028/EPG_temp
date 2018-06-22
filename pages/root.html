@@ -21,7 +21,8 @@
                 back_url_arr: []
             },
             page = {
-                index_page:0
+                index_area1_page:0,
+                index_area3_page:0
             },
             areaid,
             indexid,
@@ -32,10 +33,7 @@
         // 设置页面地址
         $("#iframe").prop("src","index.html?itvAccount=" + itvAccount + "&platform=" + platform);
             
-        var goUrl = function (_areaid, _indexid, _url, _back_url, _curpage) {
-            if(RegExp("index").test(_back_url) && _areaid == 1){
-                page.index_page = _curpage
-            }
+        var goUrl = function (_areaid, _indexid, _url, _back_url) {
             areaid = '';
             indexid = '';
             foc_obj.areaid_arr.push(_areaid);
