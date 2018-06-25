@@ -79,6 +79,7 @@ function pageInit() {
     area1.setbroadwiseCrossturnpage(true); //设置横向自动翻页
     area1.pagecount = Math.ceil(list1.length / 4);
     area1.areaPageTurnEvent = function (num) {
+        parent.page.index_area1_page = area1.curpage
         bindList1(getDataValue(area1.curpage, list1, 4));
     };
 
@@ -106,7 +107,6 @@ function pageInit() {
                 break;
 
             case 1:
-                parent.page.index_area1_page = area1.curpage
                 parent.goUrl(areaid, indexid, "../pages/page2.html", back_url)
                 break;
 
